@@ -19,9 +19,8 @@ We adopt the **ViT-B/16-IN21K** as the pre-trained model. You can use the **timm
 ## How to reproduce
 If the data and pre-trained backbone have been ready, you can just use the command '*sh Reproduce.sh*' to get all results.
 
-# PS
-About the environment:
 # Environment
+About the environment,
 Main package:
 1. torch 2.0.0+cu118,
 2. torchvision 0.15.1+cu118,
