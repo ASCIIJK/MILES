@@ -38,4 +38,6 @@ and modify
 
 *split_images_labels_imagenet(test_dset.imgs)* to *split_images_labels_imagenet(test_dset.imgs, 256)*
 
+in the *./utils/data.py*.
+
 But it will impair the performance slightly.
