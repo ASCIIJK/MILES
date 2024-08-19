@@ -30,4 +30,8 @@ Main package:
 6. numpy 1.24.2.
 
 # Notes
-We adopt multithreading to load the data into memory. For the training on Omnibenchmark and FOOD-101, you need at least 100GB RAM. If you don't have enough memory, you can modify the 'split_images_labels_imagenet(train_dset.imgs)' to 'split_images_labels_imagenet(train_dset.imgs, 256)' and 'split_images_labels_imagenet(test_dset.imgs)' to 'split_images_labels_imagenet(test_dset.imgs, 256)'. But it will impair the performance slightly.
+We adopt multithreading to load the data into memory. For the training on Omnibenchmark and FOOD-101, you need at least 100GB RAM. If you don't have enough memory, you can modify the
+<center>'*split_images_labels_imagenet(train_dset.imgs)*' to '*split_images_labels_imagenet(train_dset.imgs, 256)*' </center>   
+<center>and</center>  
+<center>'*split_images_labels_imagenet(test_dset.imgs)*' to '*split_images_labels_imagenet(test_dset.imgs, 256)*'.</center>  
+But it will impair the performance slightly.
