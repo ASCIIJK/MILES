@@ -1,0 +1,35 @@
+{
+    "prefix": "ours",
+    "dataset": "cars",
+    "memory_size": 0,
+    "memory_per_class": 0,
+    "fixed_memory": false,
+    "shuffle": false,
+    "pseudo_sample": true,
+    "distance_masked": false,
+    "init_cls": 4,
+    "increment": 4,
+    "model_name": "miles",
+    "backbone_type": "pretrained_vit_b16_224_in21k",
+    "device": ["0"],
+    "seed": 1993, 
+    "num_workers": 4,
+    "pseudo_bs": 256,
+    "alpha": 0.05,
+    "beta": 1.0,
+    
+    "init_epochs": 15,
+    "init_lr": 0.001,
+    "init_weight_decay": 0.0005,
+    "init_batch_size": 256,
+    
+    "center_correct_epochs": 5,
+    "center_correct_lr":0.001,
+    "center_correct_decay": 0.0005,
+
+    "epochs":15,
+    "lr":0.001,
+    "weight_decay": 0.0005,
+    "batch_size": 256
+}
+
