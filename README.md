@@ -31,7 +31,19 @@ Main package:
 
 # Notes
 We adopt multithreading to load the data into memory. For the training on Omnibenchmark and FOOD-101, you need at least 100GB RAM. If you don't have enough memory, you can modify the
-<center>'*split_images_labels_imagenet(train_dset.imgs)*' to '*split_images_labels_imagenet(train_dset.imgs, 256)*' </center>   
+
+<center>'split_images_labels_imagenet(train_dset.imgs)' </center>
+
+<center>'to' </center>
+
+<center>'split_images_labels_imagenet(train_dset.imgs, 256)'</center>
+
 <center>and</center>  
-<center>'*split_images_labels_imagenet(test_dset.imgs)*' to '*split_images_labels_imagenet(test_dset.imgs, 256)*'.</center>  
+
+<center>'*split_images_labels_imagenet(test_dset.imgs)*'</center> 
+  
+<center>to</center> 
+
+<center>'split_images_labels_imagenet(test_dset.imgs, 256)'.</center> 
+
 But it will impair the performance slightly.
