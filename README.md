@@ -12,9 +12,20 @@ Six datasets are included in our experiments, i.e., CIFAR-100, ImageNet-A, Omnib
 4. **CUB-200**: AWS: [link](https://s3.amazonaws.com/fast-ai-imageclas/CUB_200_2011.tgz)
 5. **FOOD-101**: AWS: [link](https://s3.amazonaws.com/fast-ai-imageclas/food-101.tgz)
 6. **CARS-196**: AWS: [link](https://s3.amazonaws.com/fast-ai-imageclas/stanford-cars.tgz)
+
 All links are from open sources. You can download these datasets and put them in the 'data' filefolder. The formats follow ImageFolder.
 ## Pre-trained backbone
 We adopt the **ViT-B/16-IN21K** as the pre-trained model. You can use the **timm** library to obtain the pre-trained weight. The weight file please put in './pre_trained_backbone/' folder, i.e., './pre_trained_backbone/B_16-i21k-300ep-lr_0.001-aug_medium1-wd_0.1-do_0.0-sd_0.0.npz'.
 ## How to reproduce
 If the data and pre-trained backbone have been ready, you can just use the command '*sh Reproduce.sh*' to get all results.
 
+# PS
+About the environment:
+# Environment
+Main package:
+1. torch 2.0.0+cu118,
+2. torchvision 0.15.1+cu118,
+3. timm 1.0.7,
+4. sklearn,
+5. tqdm,
+6. numpy 1.24.2.
