@@ -75,7 +75,7 @@ class DataManger(Dataset):
             random.shuffle(self.class_order)
         else:
             self.class_order = dataset.class_order
-        dataset.download_data()  # 载入数据
+        dataset.download_data() 
         self.setup_data()
         self._train_data, self._train_targets = dataset.train_data, dataset.train_targets
         self._test_data, self._test_targets = dataset.test_data, dataset.test_targets
@@ -90,7 +90,6 @@ class DataManger(Dataset):
         self.task_size = (len(self.class_order) - self.init_class) // self.increment
 
     def get_dataset(self, source, class_list, appendent, num=None):
-        # 获取此刻训练数据或者测试数据
         if source == "train":
             x, y = self._train_data, self._train_targets
             # trsf = self.train_trsf
