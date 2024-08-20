@@ -41,3 +41,6 @@ and modify
 in the *./utils/data.py*.
 
 But it will impair the performance slightly.
+
+# Split datasets
+Official CARS-196 files is *.mat* file. You can use the *./utils/split_cars.m* to convert it to ImageFolder format.
