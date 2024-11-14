@@ -16,7 +16,8 @@ Six datasets are included in our experiments, i.e., CIFAR-100, ImageNet-A, Omnib
 All links are from open sources. You can download these datasets and put them in the 'data' filefolder. The formats follow ImageFolder.
 ## Pre-trained backbone
 We adopt the **ViT-B/16-IN21K** as the pre-trained model. You can use the **timm** library to obtain the pre-trained weight. The weight file please put in './pre_trained_backbone/' folder, i.e., './pre_trained_backbone/B_16-i21k-300ep-lr_0.001-aug_medium1-wd_0.1-do_0.0-sd_0.0.npz'.
-We update more kinds of backbone for test. You can use more models from **huggingface** and download the file 'pytorch_model.bin'. We have tested 'ViT-B/16-IN1K', 'ViT-B/16-CLIP-IN12K', 'ConvNextv2-Base-IN21K', 'Swinv2-B/14-IN21K' and so on. You just need align the dimension of backbone and adapters.
+
+*2024.11.15* We update more kinds of backbones. You can check the './Backbone/Get_backbones.py' to get the supported pre-trained backbones. You only need revise the json file to replace the backbone. If you cannot get the weight of pre-trained models dirrectly by timm library, please access the huggingface to download the weight files, i.e., 'pytorch_model.bin'. Then, you can use 'torch.load()' to initalize the model with the 'pytorch_model.bin'.
 ## How to reproduce
 If the data and pre-trained backbone have been ready, you can just use the command '*sh Reproduce.sh*' to get all results.
 
