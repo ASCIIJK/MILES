@@ -63,7 +63,7 @@ class PrototypeBase(nn.Module):
             p.requires_grad = mode
 
     def forward(self, hyper_features):
-        # features: [bs, 768]
+        # features: [bs, 512]
         features = hyper_features
         logits = torch.abs(features - self.prototype)
         logits = -torch.sum(logits, dim=1)
@@ -71,14 +71,16 @@ class PrototypeBase(nn.Module):
 
 
 class PrototypeLearnerV4(nn.Module):
-    def __init__(self):
+    def __init__(self, out_dim=768):
         super().__init__()
         self.prototypes = nn.ModuleList()
-        self.adopter = nn.Linear(768, 768)
-        self.adopters = AdopterBaseNet(param=[768, 384, 192, 96, 48])
+        self.out_dim = out_dim
+        self.adopter = nn.Linear(self.out_dim, self.out_dim)
+        self.adopters = AdopterBaseNet(
+            param=[self.out_dim, self.out_dim // 2, self.out_dim // 4, self.out_dim // 8, self.out_dim // 16])
 
-        self.adopter.weight.data = torch.zeros(768, 768)
-        self.adopter.bias.data = torch.zeros(768)
+        self.adopter.weight.data = torch.zeros(self.out_dim, self.out_dim)
+        self.adopter.bias.data = torch.zeros(self.out_dim)
 
     def update_prototype(self, prototypes):
         for i in range(len(prototypes)):
@@ -153,7 +155,7 @@ class MILESBase(nn.Module):
         self.backbone = getbackbone(args["backbone_type"])
         self.backbone.eval()
         self.prototype_table = nn.ModuleList()
-        self.feature_dim = 768
+        self.feature_dim = self.backbone.out_dim
         self.masked = args['distance_masked']
         self.cur_task = -1
         self.task_num = []
@@ -161,7 +163,7 @@ class MILESBase(nn.Module):
     def update_cat(self, num_classes):
         self.cur_task += 1
         self.task_num.append(num_classes)
-        self.prototype_table.append(PrototypeLearnerV4())
+        self.prototype_table.append(PrototypeLearnerV4(out_dim=self.feature_dim))
 
     def update_prototype(self, prototypes):
         self.prototype_table[-1].update_prototype(prototypes)
@@ -208,12 +210,13 @@ class MILESBase(nn.Module):
     
     
 class PrototypeLearner(nn.Module):
-    def __init__(self, prototype, masked=True):
+    def __init__(self, prototype, masked=True, out_dim=768):
         super().__init__()
         self.prototype = nn.Parameter(prototype, requires_grad=True)
-        self.adapter = nn.Linear(768, 768)
-        self.adapter.weight.data = torch.zeros(768, 768)
-        self.adapter.bias.data = torch.zeros(768)
+        self.out_dim = out_dim
+        self.adapter = nn.Linear(self.out_dim, self.out_dim)
+        self.adapter.weight.data = torch.zeros(self.out_dim, self.out_dim)
+        self.adapter.bias.data = torch.zeros(self.out_dim)
         self.masked = masked
 
     def freeze_prototype(self, mode=False):
@@ -249,16 +252,17 @@ class PrototypeLearner(nn.Module):
 
 
 class TaskLearner(nn.Module):
-    def __init__(self):
+    def __init__(self, out_dim=768):
         super().__init__()
         self.class_learner = nn.ModuleList()
         self.task_num = 0
         self.class_num = None
+        self.feature_dim = out_dim
 
     def update_class(self, prototypes, masked=True):
         self.class_num = len(prototypes)
         for i in range(self.class_num):
-            class_learner = PrototypeLearner(prototypes[i], masked=masked)
+            class_learner = PrototypeLearner(prototypes[i], masked=masked, out_dim=self.feature_dim)
             self.class_learner.append(class_learner)
 
     def freeze_prototypes(self, mode=False):
@@ -297,7 +301,7 @@ class MILESPlusBackbone(nn.Module):
         self.masked = args["distance_masked"]
         self.backbone.eval()
         self.task_learners = nn.ModuleList()
-        self.feature_dim = 768
+        self.feature_dim = self.backbone.out_dim
         self.masked = args['distance_masked']
         self.cur_task = -1
         self.task_num = []
@@ -305,7 +309,7 @@ class MILESPlusBackbone(nn.Module):
     def update_task(self, num_classes, prototypes):
         self.cur_task += 1
         self.task_num.append(num_classes)
-        task_learner = TaskLearner()
+        task_learner = TaskLearner(out_dim=self.feature_dim)
         task_learner.update_class(prototypes, self.masked)
         self.task_learners.append(task_learner)
 
