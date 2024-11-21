@@ -1,5 +1,15 @@
 # MILES
 A new SOTA methods for pre-trained model-based CIL! This is the open source repository for MILES, i.e., MetrIc Learning with Expanable Subspace.
+
+*2024.11.21* We test various backbone networks in SimpleML and MILES! The results are as follow:
+| CIFAR-100 | ImageNet-A| Omnibenchmark |
+|-------|-------|-------|
+| ![](./resource/cifar_backbones.pdf) | ![](./resource/imageneta_backbones.pdf) | ![](./resource/omnibenchmark_backbones.pdf) |
+
+| CUB | FOOD-101 | CARS-196 |
+|-------|-------|-------|
+| ![](./resource/cub_backbones.pdf) | ![](./resource/food_backbones.pdf) | ![](./resource/cars_backbones.pdf) |
+
 # Preliminary
 Before reproducing our experiments, you should prepare two things:
 1. Data.
