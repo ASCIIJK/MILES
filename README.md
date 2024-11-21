@@ -4,11 +4,11 @@ A new SOTA methods for pre-trained model-based CIL! This is the open source repo
 *2024.11.21* We test various backbone networks in SimpleML and MILES! The results are as follow:
 | CIFAR-100 | ImageNet-A| Omnibenchmark |
 |-------|-------|-------|
-|<img src="./resource/cifar_backbones.png" width="250"/>|<img src="./resource/imageneta_backbones.png" width="250"/>|<img src="./resource/omnibenchmark_backbones.png" width="250"/>|
+|<img src="./resource/cifar_backbones.png" width="300"/>|<img src="./resource/imageneta_backbones.png" width="300"/>|<img src="./resource/omnibenchmark_backbones.png" width="300"/>|
 
 | CUB | FOOD-101 | CARS-196 |
 |-------|-------|-------|
-|<img src="./resource/cub_backbones.png" width="250"/>|<img src="./resource/food_backbones.png" width="250"/>|<img src="./resource/cars_backbones.png" width="250"/>|
+|<img src="./resource/cub_backbones.png" width="300"/>|<img src="./resource/food_backbones.png" width="300"/>|<img src="./resource/cars_backbones.png" width="300"/>|
 
 # Preliminary
 Before reproducing our experiments, you should prepare two things:
